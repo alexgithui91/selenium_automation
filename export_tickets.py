@@ -1,18 +1,38 @@
 import os
 import time
 import pickle
+from datetime import datetime
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.firefox import GeckoDriverManager
 
-
+# Wait time per request
 sleep_time = 5
 
 # Get Freshdesk username and password
 load_dotenv()
 username = os.environ.get("secretUser")
 password = os.environ.get("secretPassword")
+
+# Weeks dict
+weeks_dict = {
+    "1": [1, 8, 15, 22, 29],
+    "2": [2, 9, 16, 23, 30],
+    "3": [3, 10, 17, 24, 31],
+    "4": [4, 11, 18, 25],
+    "5": [5, 12, 19, 26],
+    "6": [6, 13, 20, 27],
+    "7": [7, 14, 21, 28],
+}
+
+# Get date
+today = datetime.today().day
+week = 0
+
+for key, value in weeks_dict.items():
+    if today in value:
+        week = key
 
 
 def main():
@@ -102,13 +122,21 @@ def main():
             click_date_to
         ).perform()
 
-    # attempt_2 = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[1]/button[1]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(attempt_2).click(
-    #     attempt_2
-    # ).perform()
-    # time.sleep(sleep_time)
+    last_day_of_month = driver.find_element_by_xpath(
+        "/html/body/div[7]/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[1]/button["
+        + week
+        + "]"
+    )
+    webdriver.ActionChains(driver).move_to_element(last_day_of_month).click(
+        last_day_of_month
+    ).perform()
+
+    update_dates = driver.find_element_by_xpath(
+        "/html/body/div[7]/div[2]/div/div[2]/button[2]"
+    )
+    webdriver.ActionChains(driver).move_to_element(update_dates).click(
+        update_dates
+    ).perform()
 
     # Final Export button
     # element = driver.find_element_by_xpath(
