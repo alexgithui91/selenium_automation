@@ -17,27 +17,27 @@ password = os.environ.get("secretPassword")
 def main():
     """Connect to Freshdesk and export tickets data"""
     driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    try:
-        driver.get("https://dayliffservice.freshworks.com/")
-        time.sleep(sleep_time)
 
-        email_box = driver.find_element_by_id("username")
-        email_box.send_keys(username)
+    driver.get("https://dayliffservice.freshworks.com/")
+    time.sleep(sleep_time)
 
-        pwd_box = driver.find_element_by_id("password")
-        pwd_box.send_keys(password)
+    email_box = driver.find_element_by_id("username")
+    email_box.send_keys(username)
 
-        login_button = driver.find_element_by_class_name("css-o1ejds")
-        login_button.click()
-        time.sleep(sleep_time)
+    pwd_box = driver.find_element_by_id("password")
+    pwd_box.send_keys(password)
 
-        # pickle.dump(driver.get_cookies(), open("cookie.pk1", "wb"))
-        cookies = pickle.load(open("cookie.pk1", "rb"))
-        for cookie in cookies:
-            driver.add_cookie(cookie)
+    login_button = driver.find_element_by_class_name("css-o1ejds")
+    login_button.click()
+    time.sleep(sleep_time)
 
-    except TimeoutError as err:
-        print("Error : ", err)
+    # pickle.dump(driver.get_cookies(), open("cookie.pk1", "wb"))
+    cookies = pickle.load(open("cookie.pk1", "rb"))
+    for cookie in cookies:
+        driver.add_cookie(cookie)
+
+    driver.get("https://davisandshirtliff.freshdesk.com/helpdesk")
+    time.sleep(sleep_time)
 
 
 if __name__ == "__main__":
