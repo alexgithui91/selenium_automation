@@ -57,6 +57,14 @@ def main():
     ).perform()
     time.sleep(sleep_time)
 
+    element = driver.find_element_by_xpath(
+        "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[4]/button[2]"
+    )
+    webdriver.ActionChains(driver).move_to_element(element).click(
+        element
+    ).perform()
+    time.sleep(sleep_time)
+
 
 if __name__ == "__main__":
     main()
