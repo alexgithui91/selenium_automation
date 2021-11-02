@@ -6,7 +6,7 @@ from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 
 
-sleep_time = 3
+sleep_time = 5
 
 # Get Freshdesk username and password
 load_dotenv()
@@ -16,6 +16,7 @@ password = os.environ.get("secretPassword")
 
 def main():
     """Connect to Freshdesk and export tickets data"""
+
     driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
     driver.get("https://dayliffservice.freshworks.com/")
@@ -31,7 +32,6 @@ def main():
     login_button.click()
     time.sleep(sleep_time)
 
-    # pickle.dump(driver.get_cookies(), open("cookie.pk1", "wb"))
     cookies = pickle.load(open("cookie.pk1", "rb"))
     for cookie in cookies:
         driver.add_cookie(cookie)
