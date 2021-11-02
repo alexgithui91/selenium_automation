@@ -3,6 +3,7 @@ import time
 import pickle
 from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 from webdriver_manager.firefox import GeckoDriverManager
 
 
@@ -49,21 +50,46 @@ def main():
     export_btn.click()
     time.sleep(sleep_time)
 
-    element = driver.find_element_by_id(
+    select_all_tickets = driver.find_element_by_id(
         "select-all-tickets.export.ticketfields"
     )
-    webdriver.ActionChains(driver).move_to_element(element).click(
-        element
+    webdriver.ActionChains(driver).move_to_element(select_all_tickets).click(
+        select_all_tickets
     ).perform()
     time.sleep(sleep_time)
 
-    element = driver.find_element_by_xpath(
-        "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[4]/button[2]"
+    ticket_period = driver.find_element_by_xpath(
+        "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[2]/div[3]"
     )
-    webdriver.ActionChains(driver).move_to_element(element).click(
-        element
+    webdriver.ActionChains(driver).move_to_element(ticket_period).click(
+        ticket_period
     ).perform()
     time.sleep(sleep_time)
+
+    attempt = driver.find_element_by_xpath(
+        "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[5]/div"
+    )
+    webdriver.ActionChains(driver).move_to_element(attempt).click(
+        attempt
+    ).perform()
+    time.sleep(sleep_time)
+
+    # attempt_2 = driver.find_element_by_xpath(
+    #     "/html/body/div[7]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[1]/button[1]"
+    # )
+    # webdriver.ActionChains(driver).move_to_element(attempt_2).click(
+    #     attempt_2
+    # ).perform()
+    # time.sleep(sleep_time)
+
+    # Final Export button
+    # element = driver.find_element_by_xpath(
+    #     "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[4]/button[2]"
+    # )
+    # webdriver.ActionChains(driver).move_to_element(element).click(
+    #     element
+    # ).perform()
+    # time.sleep(sleep_time)
 
 
 if __name__ == "__main__":
