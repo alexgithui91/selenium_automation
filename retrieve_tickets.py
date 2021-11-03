@@ -4,8 +4,7 @@ import pickle
 from datetime import datetime
 from dotenv import load_dotenv
 from selenium import webdriver
-
-# from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.firefox import GeckoDriverManager
 
@@ -47,10 +46,15 @@ def main():
     for cookie in cookies:
         driver.add_cookie(cookie)
 
-    search_mail = driver.find_element_by_xpath(
-        "/html/body/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div/div/div/div/div[1]/div/div[2]/div/input"
-    )
-    search_mail.send_keys("support@freshdesk.com <support@freshdesk.com>")
+    # time.sleep(sleep_time)
+
+    search_mail = driver.find_element_by_id("searchBoxColumnContainerId")
+
+    webdriver.ActionChains(driver).move_to_element(search_mail).click(
+        search_mail
+    ).send_keys("Export of tickets created within").send_keys(
+        Keys.RETURN
+    ).perform()
 
 
 if __name__ == "__main__":
