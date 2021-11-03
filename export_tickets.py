@@ -12,8 +12,8 @@ sleep_time = 5
 
 # Get Freshdesk username and password
 load_dotenv()
-username = os.environ.get("secretUser")
-password = os.environ.get("secretPassword")
+username = os.environ.get("fd_user")
+password = os.environ.get("fd_pwd")
 
 # Weeks dict
 weeks_dict = {
