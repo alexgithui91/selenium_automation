@@ -4,6 +4,8 @@ import pickle
 from datetime import datetime
 from dotenv import load_dotenv
 from selenium import webdriver
+
+# from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.firefox import GeckoDriverManager
 
@@ -40,10 +42,15 @@ def main():
     stay_signed_in.click()
     time.sleep(sleep_time)
 
-    # pickle.dump(driver.get_cookies(), open("cookies2.pkl", "wb"))
+    # pickle.dump(driver.get_cookies(), open("cookie2.pk1", "wb"))
     cookies = pickle.load(open("cookie2.pk1", "rb"))
     for cookie in cookies:
         driver.add_cookie(cookie)
+
+    search_mail = driver.find_element_by_xpath(
+        "/html/body/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div/div/div/div/div[1]/div/div[2]/div/input"
+    )
+    search_mail.send_keys("support@freshdesk.com <support@freshdesk.com>")
 
 
 if __name__ == "__main__":

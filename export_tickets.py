@@ -53,7 +53,7 @@ def main():
     login_button.click()
     time.sleep(sleep_time)
 
-    # pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
+    # pickle.dump(driver.get_cookies(), open("cookie.pkl", "wb"))
     cookies = pickle.load(open("cookie.pk1", "rb"))
     for cookie in cookies:
         driver.add_cookie(cookie)
