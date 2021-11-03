@@ -137,7 +137,6 @@ def main():
     webdriver.ActionChains(driver).move_to_element(update_dates).click(
         update_dates
     ).perform()
-    time.sleep(sleep_time)
 
     # Final Export button
     # export_data = driver.find_element_by_xpath(
