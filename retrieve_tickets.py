@@ -74,7 +74,7 @@ def main():
         ):
             download_links.append(e.get_attribute("href"))
 
-    webbrowser.open_link(download_links[1])
+    webbrowser.open_new_tab(download_links[1])
 
 
 if __name__ == "__main__":
