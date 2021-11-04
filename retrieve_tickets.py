@@ -1,11 +1,14 @@
 import os
 import time
 import pickle
+import webbrowser
 from datetime import datetime
 from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from webdriver_manager import firefox
 from webdriver_manager.firefox import GeckoDriverManager
 
 # Wait time per request
@@ -55,6 +58,23 @@ def main():
     ).send_keys("Export of tickets created within").send_keys(
         Keys.RETURN
     ).perform()
+    time.sleep(sleep_time)
+
+    attempt = driver.find_element_by_id("All results")
+    webdriver.ActionChains(driver).move_to_element(attempt).click(
+        attempt
+    ).send_keys(Keys.ARROW_DOWN).send_keys(Keys.RETURN).perform()
+    time.sleep(sleep_time)
+
+    download_links = []
+    elem = driver.find_elements_by_xpath("//*[@href]")
+    for e in elem:
+        if e.get_attribute("href").startswith(
+            "https://eur01.safelinks.protection.outlook.com/"
+        ):
+            download_links.append(e.get_attribute("href"))
+
+    webbrowser.open_link(download_links[1])
 
 
 if __name__ == "__main__":
