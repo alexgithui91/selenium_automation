@@ -11,6 +11,7 @@ conn = pyodbc.connect(
 cursor = conn.cursor()
 
 data = pd.read_csv(r"C:\Users\Agithui\Downloads\tickets.csv")
+
 df = pd.DataFrame(
     data,
     columns=[
