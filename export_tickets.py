@@ -118,7 +118,7 @@ def main():
     click_date_to = driver.find_element_by_xpath(
         "/html/body/div[7]/div[2]/div/div[1]/button[2]"
     )
-    for mnth in range(1, 7):
+    for mnth in range(1, 8):
         webdriver.ActionChains(driver).move_to_element(click_date_to).click(
             click_date_to
         ).perform()
