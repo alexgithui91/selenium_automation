@@ -29,6 +29,7 @@ weeks_dict = {
 
 # Get date
 today = datetime.today().day
+month = datetime.today().month
 week = 0
 
 for key, value in weeks_dict.items():
@@ -71,90 +72,96 @@ def main():
         time.sleep(sleep_time)
 
     def select_export_criteria():
-        
-    # export_btn = driver.find_element_by_xpath(
-    #     "//*[@id='ember144']/div[2]/div/button[1]"
-    # )
-    # export_btn.click()
-    # time.sleep(sleep_time)
+        date_pick = driver.find_element_by_class_name(
+            "ember-power-select-selected-item"
+        )
+        webdriver.ActionChains(driver).move_to_element(date_pick).click(
+            date_pick
+        ).send_keys(Keys.ARROW_DOWN).send_keys(Keys.ARROW_DOWN).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.ARROW_DOWN
+        ).send_keys(
+            Keys.RETURN
+        ).perform()
+        time.sleep(sleep_time)
 
-    # select_all_tickets = driver.find_element_by_id(
-    #     "select-all-tickets.export.ticketfields"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(select_all_tickets).click(
-    #     select_all_tickets
-    # ).perform()
-    # time.sleep(sleep_time)
+        # Get from date
+        click_date_from = driver.find_element_by_xpath(
+            "/html/body/div[7]/div[2]/div/div[1]/button[1]"
+        )
 
-    # ticket_period = driver.find_element_by_xpath(
-    #     "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[2]/div[3]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(ticket_period).click(
-    #     ticket_period
-    # ).perform()
-    # time.sleep(sleep_time)
+        for mnth in range(month, 1, -1):
+            webdriver.ActionChains(driver).move_to_element(
+                click_date_from
+            ).click(click_date_from).perform()
 
-    # select_time_range = driver.find_element_by_xpath(
-    #     "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[5]/div"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(select_time_range).click(
-    #     select_time_range
-    # ).perform()
-    # time.sleep(sleep_time)
+        first_day_of_month = driver.find_element_by_xpath(
+            "/html/body/div[7]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[1]/button[1]"
+        )
+        webdriver.ActionChains(driver).move_to_element(
+            first_day_of_month
+        ).click(first_day_of_month).perform()
 
-    # # Get from date
-    # click_date_from = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[1]/button[1]"
-    # )
+        # Get to date
+        click_date_to = driver.find_element_by_xpath(
+            "/html/body/div[7]/div[2]/div/div[1]/button[2]"
+        )
+        for mnth in range(1, month):
+            webdriver.ActionChains(driver).move_to_element(
+                click_date_to
+            ).click(click_date_to).perform()
 
-    # for mnth in range(1, 7):
-    #     webdriver.ActionChains(driver).move_to_element(click_date_from).click(
-    #         click_date_from
-    #     ).perform()
+        last_day_of_month = driver.find_element_by_xpath(
+            "/html/body/div[7]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[2]/button["
+            + week
+            + "]"
+        )
+        webdriver.ActionChains(driver).move_to_element(
+            last_day_of_month
+        ).click(last_day_of_month).perform()
 
-    # first_day_of_month = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[1]/button[1]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(first_day_of_month).click(
-    #     first_day_of_month
-    # ).perform()
+        update_time = driver.find_element_by_xpath(
+            "/html/body/div[7]/div[2]/div/div[2]/button[2]"
+        )
+        update_time.click()
 
-    # time.sleep(sleep_time)
+        apply_update_time = driver.find_element_by_xpath(
+            "/html/body/div[8]/div[2]/div[3]/div[2]/div/div[2]/div/div/div/div[3]/button"
+        )
+        apply_update_time.click()
 
-    # # Get to date
-    # click_date_to = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[1]/button[2]"
-    # )
-    # for mnth in range(1, 8):
-    #     webdriver.ActionChains(driver).move_to_element(click_date_to).click(
-    #         click_date_to
-    #     ).perform()
+        export_btn = driver.find_element_by_xpath(
+            "//*[@id='ember144']/div[2]/div/button[1]"
+        )
+        export_btn.click()
+        time.sleep(sleep_time)
 
-    # last_day_of_month = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[1]/button["
-    #     + week
-    #     + "]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(last_day_of_month).click(
-    #     last_day_of_month
-    # ).perform()
+        select_all_tickets = driver.find_element_by_id(
+            "select-all-tickets.export.ticketfields"
+        )
+        webdriver.ActionChains(driver).move_to_element(
+            select_all_tickets
+        ).click(select_all_tickets).perform()
+        time.sleep(sleep_time)
 
-    # update_dates = driver.find_element_by_xpath(
-    #     "/html/body/div[7]/div[2]/div/div[2]/button[2]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(update_dates).click(
-    #     update_dates
-    # ).perform()
-    # time.sleep(sleep_time)
-
-    # Final Export button
-    # export_data = driver.find_element_by_xpath(
-    #     "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[4]/button[2]"
-    # )
-    # webdriver.ActionChains(driver).move_to_element(export_data).click(
-    #     export_data
-    # ).perform()
-    # time.sleep(sleep_time)
+    def export_tickets():
+        # Final Export button
+        export_data = driver.find_element_by_xpath(
+            "/html/body/div[8]/div[2]/div[4]/div/div/div/div/div/div[2]/div[4]/button[2]"
+        )
+        webdriver.ActionChains(driver).move_to_element(export_data).click(
+            export_data
+        ).perform()
+        time.sleep(sleep_time)
 
     # Login in to freshdesk
     login()
@@ -162,6 +169,8 @@ def main():
     navigate_to_tickets()
     # Select time period of export
     select_export_criteria()
+    # Export tickets
+    export_tickets()
 
 
 if __name__ == "__main__":
