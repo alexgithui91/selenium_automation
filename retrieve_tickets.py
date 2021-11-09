@@ -49,8 +49,6 @@ def main():
     for cookie in cookies:
         driver.add_cookie(cookie)
 
-    # time.sleep(sleep_time)
-
     search_mail = driver.find_element_by_id("searchBoxColumnContainerId")
 
     webdriver.ActionChains(driver).move_to_element(search_mail).click(
@@ -70,7 +68,7 @@ def main():
     elem = driver.find_elements_by_xpath("//*[@href]")
     for e in elem:
         if e.get_attribute("href").startswith(
-            "https://eur01.safelinks.protection.outlook.com/"
+            "https://emea01.safelinks.protection.outlook.com/"
         ):
             download_links.append(e.get_attribute("href"))
 
