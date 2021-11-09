@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 # Cookies files
-.pk1
+/cookie.pk1
+/cookie2.pk1
