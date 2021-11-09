@@ -5,6 +5,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
 from webdriver_manager.firefox import GeckoDriverManager
 
 # Wait time per request
@@ -69,6 +70,8 @@ def main():
 
         time.sleep(sleep_time)
 
+    def select_export_criteria():
+        
     # export_btn = driver.find_element_by_xpath(
     #     "//*[@id='ember144']/div[2]/div/button[1]"
     # )
@@ -157,6 +160,8 @@ def main():
     login()
     # Navigate to all tickets
     navigate_to_tickets()
+    # Select time period of export
+    select_export_criteria()
 
 
 if __name__ == "__main__":
