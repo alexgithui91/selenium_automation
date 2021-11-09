@@ -34,36 +34,40 @@ for key, value in weeks_dict.items():
     if today in value:
         week = key
 
+driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
 
 def main():
     """Connect to Freshdesk and export tickets data"""
 
-    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+    def login():
 
-    driver.get("https://dayliffservice.freshworks.com/")
-    time.sleep(sleep_time)
+        driver.get("https://dayliffservice.freshworks.com/")
+        time.sleep(sleep_time)
 
-    email_box = driver.find_element_by_id("username")
-    email_box.send_keys(username)
+        email_box = driver.find_element_by_id("username")
+        email_box.send_keys(username)
 
-    pwd_box = driver.find_element_by_id("password")
-    pwd_box.send_keys(password)
+        pwd_box = driver.find_element_by_id("password")
+        pwd_box.send_keys(password)
 
-    login_button = driver.find_element_by_class_name("css-o1ejds")
-    login_button.click()
-    time.sleep(sleep_time)
+        login_button = driver.find_element_by_class_name("css-o1ejds")
+        login_button.click()
+        time.sleep(sleep_time)
 
-    # pickle.dump(driver.get_cookies(), open("cookie.pkl", "wb"))
-    cookies = pickle.load(open("cookie.pk1", "rb"))
-    for cookie in cookies:
-        driver.add_cookie(cookie)
+        # pickle.dump(driver.get_cookies(), open("cookie.pkl", "wb"))
+        cookies = pickle.load(open("cookie.pk1", "rb"))
+        for cookie in cookies:
+            driver.add_cookie(cookie)
 
-    driver.get("https://davisandshirtliff.freshdesk.com/helpdesk")
-    time.sleep(sleep_time)
+    def navigate_to_tickets():
 
-    driver.get("https://davisandshirtliff.freshdesk.com/a/tickets")
+        driver.get("https://davisandshirtliff.freshdesk.com/helpdesk")
+        time.sleep(sleep_time)
 
-    time.sleep(sleep_time)
+        driver.get("https://davisandshirtliff.freshdesk.com/a/tickets")
+
+        time.sleep(sleep_time)
 
     # export_btn = driver.find_element_by_xpath(
     #     "//*[@id='ember144']/div[2]/div/button[1]"
@@ -148,6 +152,11 @@ def main():
     #     export_data
     # ).perform()
     # time.sleep(sleep_time)
+
+    # Login in to freshdesk
+    login()
+    # Navigate to all tickets
+    navigate_to_tickets()
 
 
 if __name__ == "__main__":
