@@ -1,6 +1,5 @@
 import pyodbc
 import pandas as pd
-from tabulate import tabulate
 
 conn = pyodbc.connect(
     "Driver={ODBC Driver 17 for SQL Server};"
