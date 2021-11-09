@@ -64,7 +64,6 @@ final_df["Case SubCategory"].fillna("", inplace=True)
 final_df["Subject"] = final_df["Subject"].apply(str)
 final_df["Type"] = final_df["Type"].apply(str)
 
-
 records = final_df.values.tolist()
 
 sql_insert = """
