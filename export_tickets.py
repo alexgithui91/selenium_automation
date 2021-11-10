@@ -169,7 +169,7 @@ def run_exporter():
     # Select time period of export
     select_export_criteria()
     # Export tickets
-    export_tickets()
+    # export_tickets()
 
 
 if __name__ == "__main__":
