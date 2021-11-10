@@ -38,7 +38,7 @@ for key, value in weeks_dict.items():
 driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
 
-def main():
+def run_exporter():
     """Connect to Freshdesk and export tickets data"""
 
     def login():
@@ -173,4 +173,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run_exporter()
