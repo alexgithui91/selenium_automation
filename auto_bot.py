@@ -25,7 +25,7 @@ def run_bot():
     )
     log_in.click()
 
-    time.sleep(5)
+    time.sleep(10)
 
     driver.close()
 
