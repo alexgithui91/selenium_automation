@@ -1,6 +1,5 @@
 # selenium_automation
 
-Automating data export from a helpdesk portal.
+Using Python Selenium to automate login process to HackerRank.com.
 
-1. Use selenium to automate web movements
-2. Use python to read outlook email and download attachments
+1. Use selenium to automate web movements and initiate a login
