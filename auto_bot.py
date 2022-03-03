@@ -10,7 +10,7 @@ def run_bot():
     user_name = os.environ.get("user_email")
     user_pwd = os.environ.get("user_pwd")
 
-    driver = webdriver.Chrome("./chromedriver")
+    driver = webdriver.Chrome("chromedriver")
     driver.maximize_window()
     driver.get("https://www.hackerrank.com/auth/login")
 
